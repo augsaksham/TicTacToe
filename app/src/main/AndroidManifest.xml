@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tictactoe">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".MenuActivity"
+            android:configChanges="keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen" />
+        <activity
+            android:name=".SplashActivity"
+            android:configChanges="keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
