@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_weight="1"
+    android:background="@drawable/back2"
     tools:context=".MenuActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/single_player"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#3F51B5"
+        android:onClick="startGame_SinglePlayer"
+        android:fontFamily="@font/aclonica"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Single Player"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/multi_player"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#3F51B5"
+        android:fontFamily="@font/aclonica"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:onClick="StartGameOnline"
+        android:paddingBottom="10dp"
+        android:text="Multi Player"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+
+    <Button
+        android:id="@+id/chat_player"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#3F51B5"
+        android:fontFamily="@font/aclonica"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:onClick="OpenChat"
+        android:text="Chat"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:background="#3F51B5"
+        android:fontFamily="@font/aclonica"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:onClick="Exit"
+        android:text="Exit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+
+</LinearLayout>

@@ -43,7 +43,7 @@
                 android:layout_margin="3dp"
                 android:layout_marginLeft="2dp"
                 android:onClick="GameBoardClick"
-                android:src="@drawable/Osign" />
+                />
 
             <ImageView
                 android:id="@+id/iv_13"

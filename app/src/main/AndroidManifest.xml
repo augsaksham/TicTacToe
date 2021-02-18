@@ -13,16 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
+        <activity android:name=".OnlineLoginActivity"></activity>
         <activity
             android:name=".MenuActivity"
             android:configChanges="keyboardHidden"
-            android:screenOrientation="landscape"
-            android:theme="@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".SplashActivity"
             android:configChanges="keyboardHidden"
-            android:screenOrientation="landscape"
-            android:theme="@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
