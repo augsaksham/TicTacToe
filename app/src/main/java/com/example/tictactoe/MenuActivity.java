@@ -33,4 +33,5 @@ public class MenuActivity extends AppCompatActivity {
 
     public void OpenChat(View view) {
     }
+
 }
