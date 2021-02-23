@@ -32,6 +32,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void OpenChat(View view) {
+        Intent i=new Intent(getApplicationContext(),ChatMainActivity.class);
+        startActivity(i);
     }
 
 }
