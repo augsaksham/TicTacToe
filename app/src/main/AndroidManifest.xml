@@ -15,12 +15,13 @@
         android:theme="@style/Theme.TicTacToe">
         <activity android:name=".ChatMainActivity"
             android:theme="@style/FullScreenTheme"
-            android:screenOrientation="landscape">
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ChatActivity"
             android:theme="@style/FullScreenTheme"
-            android:screenOrientation="landscape">
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".OnlineLoginActivity"

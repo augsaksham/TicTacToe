@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
     <ListView
-        android:background="@drawable/chatback"
+        android:background="@drawable/wall"
         android:id="@+id/lvConversation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/sendMessageButton"
             android:layout_weight="0.72"
-            android:background="@color/white"
+            android:background="@color/black"
             android:ems="10"
             android:maxHeight="80dp" />
 

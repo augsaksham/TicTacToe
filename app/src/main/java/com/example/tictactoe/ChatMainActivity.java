@@ -85,6 +85,7 @@ public class ChatMainActivity extends AppCompatActivity {
     private void getUserName(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final EditText userName = new EditText(this);
+        userName.setHint("Username");
 
         builder.setView(userName);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
