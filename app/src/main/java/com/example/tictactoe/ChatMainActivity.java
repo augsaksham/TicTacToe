@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +32,6 @@ public class ChatMainActivity extends AppCompatActivity {
     ListView lvDiscussionTopics;
     ArrayList<String> listOfDiscussion = new ArrayList<String>();
     ArrayAdapter arrayAdpt;
-
     String UserName;
 
     private DatabaseReference dbr = FirebaseDatabase.getInstance().getReference().getRoot();
@@ -83,23 +83,25 @@ public class ChatMainActivity extends AppCompatActivity {
         });
     }
     private void getUserName(){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final EditText userName = new EditText(this);
-        userName.setHint("Username");
-
-        builder.setView(userName);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                UserName = userName.getText().toString();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                getUserName();
-            }
-        });
-        builder.show();
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        final EditText userName = new EditText(this);
+//        userName.setHint("Username");
+//
+//        builder.setView(userName);
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                UserName = userName.getText().toString();
+//            }
+//        });
+//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                getUserName();
+//            }
+//        });
+//        builder.show();
+        SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
+        UserName=sp.getString("key"," Default user");
     }
 }

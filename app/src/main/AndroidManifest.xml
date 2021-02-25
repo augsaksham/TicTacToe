@@ -41,7 +41,7 @@
         <activity
             android:name=".MenuActivity"
             android:configChanges="keyboardHidden"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".SplashActivity"
