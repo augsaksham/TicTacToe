@@ -13,16 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
-        <activity android:name=".ChatMainActivity"
+        <activity android:name=".GlobalRegisterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme"
-            android:screenOrientation="portrait">
-        </activity>
+            />
+        <activity android:name=".GlobalLoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme"/>
+        <activity
+            android:name=".ChatMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".ChatActivity"
-            android:theme="@style/FullScreenTheme"
             android:screenOrientation="portrait"
-            >
-        </activity>
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".OnlineLoginActivity"
             android:configChanges="keyboardHidden"

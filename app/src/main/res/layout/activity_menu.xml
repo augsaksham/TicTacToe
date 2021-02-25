@@ -15,17 +15,18 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="308dp"
         android:layout_height="wrap_content"
-        android:background="#FF1100"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_shape"
         android:fontFamily="@font/aclonica"
-        android:onClick="startGame_SinglePlayer"
 
+        android:onClick="startGame_SinglePlayer"
         android:paddingLeft="10dp"
         android:paddingTop="15dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:text="Single Player"
-        android:layout_marginBottom="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/white" />
 
 
     <Button
@@ -33,7 +34,7 @@
         android:layout_width="302dp"
         android:layout_marginBottom="5dp"
         android:layout_height="wrap_content"
-        android:background="#FF1100"
+        android:background="@drawable/button_shape"
         android:fontFamily="@font/aclonica"
         android:paddingLeft="10dp"
         android:paddingTop="15dp"
@@ -48,7 +49,7 @@
         android:layout_width="303dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:background="#FF1100"
+        android:background="@drawable/button_shape"
         android:fontFamily="@font/aclonica"
         android:onClick="StartGameOnline"
         android:paddingLeft="10dp"
@@ -62,7 +63,7 @@
         android:id="@+id/exit"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
-        android:background="#FF1100"
+        android:background="@drawable/button_shape"
         android:fontFamily="@font/aclonica"
         android:paddingLeft="10dp"
         android:paddingTop="15dp"
