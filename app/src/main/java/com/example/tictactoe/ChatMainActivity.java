@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +34,15 @@ public class ChatMainActivity extends AppCompatActivity {
     ArrayList<String> listOfDiscussion = new ArrayList<String>();
     ArrayAdapter arrayAdpt;
     String UserName;
+    ProgressBar progress;
 
     private DatabaseReference dbr = FirebaseDatabase.getInstance().getReference().getRoot();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_main);
+        progress=(ProgressBar) findViewById(R.id.progressbar3);
+        progress.setVisibility(View.VISIBLE);
         lvDiscussionTopics = (ListView) findViewById(R.id.lvDiscussionTopics);
         arrayAdpt = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, listOfDiscussion);
@@ -56,6 +60,7 @@ public class ChatMainActivity extends AppCompatActivity {
                 arrayAdpt.clear();
                 arrayAdpt.addAll(set);
                 arrayAdpt.notifyDataSetChanged();
+                progress.setVisibility(View.INVISIBLE);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -95,6 +100,6 @@ public class ChatMainActivity extends AppCompatActivity {
 //        });
 //        builder.show();
         SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
-        UserName=sp.getString("key"," Default user");
+        UserName=sp.getString("key","Default user");
     }
 }
