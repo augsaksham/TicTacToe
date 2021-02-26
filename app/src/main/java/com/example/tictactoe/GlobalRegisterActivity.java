@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,15 +27,16 @@ public class GlobalRegisterActivity extends AppCompatActivity {
     EditText etEmail;
     EditText etPassword;
     EditText etUsername;
-    Button btnLogin;
-    Button btnRegister;
-    String userName;
+    ProgressBar progressbar;
+    String userName,tmp1,tmp2,tmp3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_global_register);
+        progressbar=findViewById(R.id.progressbar2);
+        progressbar.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener=new FirebaseAuth.AuthStateListener() {
             @Override
@@ -70,7 +72,7 @@ public class GlobalRegisterActivity extends AppCompatActivity {
                             startActivity(i);
                         }
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),"Auth failed",
+                            Toast.makeText(getApplicationContext(),"Auth failed "+task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -81,12 +83,34 @@ public class GlobalRegisterActivity extends AppCompatActivity {
         etEmail=(EditText) findViewById(R.id.etEmail2);
         etPassword=(EditText) findViewById(R.id.etPassword2);
         etUsername=(EditText) findViewById(R.id.etUsername2);
+                tmp1=etEmail.getText().toString().trim();
+        tmp1.trim();
+        if(tmp1.compareToIgnoreCase("")==0){
+            Toast.makeText(this, "Email can't be empty", Toast.LENGTH_SHORT).show();
+            progressbar.setVisibility(View.INVISIBLE);
+            return;
+        }
+        tmp2=etPassword.getText().toString().trim();;
+        tmp2.trim();
+        if(tmp2.compareToIgnoreCase("")==0){
+            Toast.makeText(this, "Password can't be empty", Toast.LENGTH_SHORT).show();
+            progressbar.setVisibility(View.INVISIBLE);
+            return;
+        }
+        tmp3=etUsername.getText().toString().trim();;
+        tmp3.trim();
+        if(tmp3.compareToIgnoreCase("")==0){
+            Toast.makeText(this, "Username can't be empty", Toast.LENGTH_SHORT).show();
+            progressbar.setVisibility(View.INVISIBLE);
+            return;
+        }
         userName=etUsername.getText().toString();
         RegisterUser(etEmail.getText().toString(),etPassword.getText().toString());
         SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putString("key",userName);
         edit.apply();
+        progressbar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -96,6 +120,7 @@ public class GlobalRegisterActivity extends AppCompatActivity {
     }
 
     public void Register(View view) {
+        progressbar.setVisibility(View.VISIBLE);
         RegisterNewUser();
     }
 

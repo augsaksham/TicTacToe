@@ -9,49 +9,63 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class GlobalLoginActivity extends AppCompatActivity {
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseAuth mAuth;
     EditText etEmail;
     EditText etPassword;
     EditText etUsername;
-    Button btnLogin;
-    Button btnRegister;
+//    ProgressBar progressbar;
+    String user,pass,name;
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_global_login);
+//        progressbar=(ProgressBar) findViewById(R.id.progressbar1);
+//        progressbar.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener=new FirebaseAuth.AuthStateListener() {
+        etEmail=(EditText) findViewById(R.id.etEmail1);
+        etPassword=(EditText) findViewById(R.id.etPassword1);
+        etUsername=(EditText) findViewById(R.id.etUsername1);
+        user=etEmail.getText().toString().trim();
+        pass=etPassword.getText().toString().trim();
+        name=etUsername.getText().toString();
+        login=(Button)findViewById(R.id.login_btn1);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user=firebaseAuth.getCurrentUser();
-                if(user!=null){
-                    Log.d("Auth","onAuthStateChanged:signed_in:"+user.getUid());
-                }
-                else{
-                    Intent i=new Intent(getApplicationContext(),GlobalLoginActivity.class);
-                    startActivity(i);
-                    Log.d("Auth Failed","onAuthStateChanged:signed_out or login");
+            public void onClick(View v) {
+//                progressbar.setVisibility(View.VISIBLE);
+                mAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+//                            progressbar.setVisibility(View.INVISIBLE);
+                            Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+                            startActivity(i);
+                        }else{
+//                            progressbar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(GlobalLoginActivity.this, "Login Unsucessful", Toast.LENGTH_SHORT).show();
+                        }
+                        }
+                });
 
-                }
             }
-        };
+        });
     }
 
-    public void Register(View view) {
-        Intent i=new Intent(getApplicationContext(),GlobalLoginActivity.class);
+    public void Register2(View view) {
+        Intent i=new Intent(getApplicationContext(),GlobalRegisterActivity.class);
         startActivity(i);
-    }
-
-    public void Login(View view) {
     }
 }

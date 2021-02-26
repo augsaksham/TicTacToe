@@ -43,27 +43,20 @@ public class ChatMainActivity extends AppCompatActivity {
         arrayAdpt = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, listOfDiscussion);
         lvDiscussionTopics.setAdapter(arrayAdpt);
-
-
-        getUserName();
-
-
+        SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
+        UserName=sp.getString("key"," Default user");
         dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Set<String> set = new HashSet<String>();
                 Iterator i = dataSnapshot.getChildren().iterator();
-
                 while(i.hasNext()){
                     set.add(((DataSnapshot)i.next()).getKey());
                 }
-
                 arrayAdpt.clear();
                 arrayAdpt.addAll(set);
                 arrayAdpt.notifyDataSetChanged();
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(ChatMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
