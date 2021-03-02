@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     tools:context=".OnlineLoginActivity">
 
     <TextView
-        android:layout_width="233dp"
-        android:layout_height="95dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Logged in"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/tvLoginUser"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textAlignment="center"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send Request To"
+                android:id="@+id/tvSendRequest"
+                />
+            <ListView
+                android:id="@+id/lv_loginUsers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvAcceptRequest"
+                android:text="Accept Request From"/>
+            <ListView
+                android:id="@+id/lv_requestedUsers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

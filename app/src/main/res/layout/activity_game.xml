@@ -39,6 +39,7 @@
                 android:paddingStart="80dp" />
 
             <ImageView
+
                 android:id="@+id/iv_12"
                 android:layout_width="189dp"
                 android:layout_height="138dp"
