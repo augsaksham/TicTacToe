@@ -1,21 +1,17 @@
 package com.example.tictactoe;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +53,7 @@ public class ChatMainActivity extends AppCompatActivity {
                 while(i.hasNext()){
                     set.add(((DataSnapshot)i.next()).getKey());
                 }
+                set.remove("users");
                 arrayAdpt.clear();
                 arrayAdpt.addAll(set);
                 arrayAdpt.notifyDataSetChanged();
