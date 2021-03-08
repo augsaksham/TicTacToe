@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
-        <activity android:name=".OnlineGameActivity"></activity>
+        <activity android:name=".OnlineGameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullScreenTheme">
+        </activity>
         <activity
             android:name=".GlobalRegisterActivity"
             android:screenOrientation="portrait"
