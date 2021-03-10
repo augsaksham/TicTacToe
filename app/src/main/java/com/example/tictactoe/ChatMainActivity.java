@@ -54,6 +54,7 @@ public class ChatMainActivity extends AppCompatActivity {
                     set.add(((DataSnapshot)i.next()).getKey());
                 }
                 set.remove("users");
+                set.remove("playing");
                 arrayAdpt.clear();
                 arrayAdpt.addAll(set);
                 arrayAdpt.notifyDataSetChanged();
@@ -78,24 +79,6 @@ public class ChatMainActivity extends AppCompatActivity {
         });
     }
     private void getUserName(){
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        final EditText userName = new EditText(this);
-//        userName.setHint("Username");
-//
-//        builder.setView(userName);
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                UserName = userName.getText().toString();
-//            }
-//        });
-//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                getUserName();
-//            }
-//        });
-//        builder.show();
         SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
         UserName=sp.getString("key","Default user");
     }

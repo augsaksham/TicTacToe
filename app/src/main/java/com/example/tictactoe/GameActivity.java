@@ -1,17 +1,15 @@
 package com.example.tictactoe;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Random;
-
 public class GameActivity extends AppCompatActivity {
     int gameState;
 
@@ -70,13 +68,13 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
             if(activePlayer==1){
-                selectedImage.setImageResource(R.drawable.xsign);
+                selectedImage.setImageResource(R.drawable.multi_x);
                 player1.add(selectedBlock);
                 activePlayer=2;
                 Autoplay();
             }
             else if(activePlayer==2){
-                selectedImage.setImageResource(R.drawable.osign);
+                selectedImage.setImageResource(R.drawable.multi_o);
                 player2.add(selectedBlock);
                 activePlayer=1;
             }
@@ -125,7 +123,6 @@ public class GameActivity extends AppCompatActivity {
                 case 7:selectedImage=(ImageView) findViewById(R.id.iv_31); break;
                 case 8:selectedImage=(ImageView) findViewById(R.id.iv_32); break;
                 case 9:selectedImage=(ImageView) findViewById(R.id.iv_33); break;
-
             }
             PlayGame(selectedBlock,selectedImage);
         }

@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,36 +36,55 @@ import java.util.Set;
 
 
 public class OnlineLoginActivity extends AppCompatActivity {
+
     ListView lv_loginUsers;
     ArrayList<String> list_loginUsers = new ArrayList<String>();
     ArrayAdapter adpt;
+
     ListView lv_requstedUsers;
     ArrayList<String> list_requestedUsers = new ArrayList<String>();
     ArrayAdapter reqUsersAdpt;
+
     TextView tvUserID, tvSendRequest, tvAcceptRequest;
     String LoginUserID, UserName, LoginUID;
+
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_login);
+
         tvSendRequest = (TextView) findViewById(R.id.tvSendRequest);
         tvAcceptRequest = (TextView) findViewById(R.id.tvAcceptRequest);
+
         tvSendRequest.setText("Please wait...");
         tvAcceptRequest.setText("Please wait...");
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         mAuth = FirebaseAuth.getInstance();
+
         lv_loginUsers = (ListView) findViewById(R.id.lv_loginUsers);
         adpt = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list_loginUsers);
         lv_loginUsers.setAdapter(adpt);
+
+
         lv_requstedUsers = (ListView) findViewById(R.id.lv_requestedUsers);
         reqUsersAdpt = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list_requestedUsers);
         lv_requstedUsers.setAdapter(reqUsersAdpt);
+
+
         tvUserID = (TextView) findViewById(R.id.tvLoginUser);
+
+
+
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -88,21 +107,23 @@ public class OnlineLoginActivity extends AppCompatActivity {
                 }
             }
         };
-        myRef.getRoot().child("users").addValueEventListener(new ValueEventListener() {
 
+
+
+        myRef.getRoot().child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 updateLoginUsers(dataSnapshot);
-
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                tvAcceptRequest.setText("Error");
 
             }
         });
+
+
+
         lv_loginUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -110,6 +131,9 @@ public class OnlineLoginActivity extends AppCompatActivity {
                 confirmRequest(requestToUser, "To");
             }
         });
+
+
+
         lv_requstedUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -118,6 +142,7 @@ public class OnlineLoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
     void confirmRequest(final String OtherPlayer, final String reqType){
@@ -203,12 +228,11 @@ public class OnlineLoginActivity extends AppCompatActivity {
         String key = "";
         Set<String> set = new HashSet<String>();
         Iterator i = dataSnapshot.getChildren().iterator();
-        int count=0;
+
         while(i.hasNext()){
             key = ((DataSnapshot) i.next()).getKey();
             if(!key.equalsIgnoreCase(UserName)) {
                 set.add(key);
-                tvAcceptRequest.setText("count = "+(count++));
             }
         }
 
@@ -243,6 +267,9 @@ public class OnlineLoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d("Auth Complete", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Auth failed",
                                     Toast.LENGTH_SHORT).show();
@@ -251,5 +278,4 @@ public class OnlineLoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
 }
