@@ -1,7 +1,9 @@
 package com.example.tictactoe;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,12 +14,15 @@ import java.util.ArrayList;
 import java.util.Random;
 public class GameActivity extends AppCompatActivity {
     int gameState;
-
+    int activePlayer;
+    int comMove=0;
+    int playerMove=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         gameState=1;
+        activePlayer=1;
     }
 
     public void GameBoardClick(View view) {
@@ -57,7 +62,6 @@ public class GameActivity extends AppCompatActivity {
         }
         PlayGame(selectedBlock,selectedImage);
     }
-    int activePlayer=1;
     ArrayList<Integer> player1=new ArrayList<Integer>();
     ArrayList<Integer> player2=new ArrayList<Integer>();
     private void PlayGame(int selectedBlock, ImageView selectedImage) {
@@ -70,8 +74,14 @@ public class GameActivity extends AppCompatActivity {
             if(activePlayer==1){
                 selectedImage.setImageResource(R.drawable.multi_x);
                 player1.add(selectedBlock);
-                activePlayer=2;
-                Autoplay();
+                playerMove++;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        activePlayer=2;
+                        Autoplay();
+                    }
+                }, 500);
             }
             else if(activePlayer==2){
                 selectedImage.setImageResource(R.drawable.multi_o);
@@ -82,7 +92,6 @@ public class GameActivity extends AppCompatActivity {
             CheckWinner ();
         }
     }
-
     private void Autoplay() {
         ArrayList<Integer> emptyBlocks=new ArrayList<Integer>() ;
         for(int i=0;i<=9;i++){
@@ -91,23 +100,25 @@ public class GameActivity extends AppCompatActivity {
             }
         }if(emptyBlocks.size()==0){
             CheckWinner();
-            if(gameState==1){
-                AlertDialog.Builder b=new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-                showAlert("Draw");
-            }
-            gameState=3; //draw
+//            if(gameState==1){
+////                AlertDialog.Builder b=new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+//                showAlert("Draw");
+//            }
+//            gameState=3; //draw
         }else{
-//            Random r=new Random();
-//            int randomIndex=r.nextInt(10-1)+1;
-//            int selectedBlock=emptyBlocks.get(randomIndex);
             int selectedBlock=0;
             boolean flg=false;
             while (!flg){
+                if(comMove==4){
+                    selectedBlock=10;
+                    break;
+                }
                 Random r=new Random();
                 int randomIndex=r.nextInt(10-1)+1;
                 flg=emptyBlocks.contains(randomIndex);
                 if(flg){
                     selectedBlock=randomIndex;
+                    comMove++;
                 }
             }
             ImageView selectedImage=null;
@@ -123,6 +134,7 @@ public class GameActivity extends AppCompatActivity {
                 case 7:selectedImage=(ImageView) findViewById(R.id.iv_31); break;
                 case 8:selectedImage=(ImageView) findViewById(R.id.iv_32); break;
                 case 9:selectedImage=(ImageView) findViewById(R.id.iv_33); break;
+                case 10:selectedImage=null;break;
             }
             PlayGame(selectedBlock,selectedImage);
         }
@@ -152,6 +164,8 @@ public class GameActivity extends AppCompatActivity {
 
     }
     void ResetGame(){
+        playerMove=0;
+        comMove=0;
         gameState=1;
         activePlayer=1;
         player1.clear();
@@ -201,6 +215,19 @@ public class GameActivity extends AppCompatActivity {
                 showAlert("Player 2 is winner");
             }
             gameState=2;//symolising game over
+        }
+        if((comMove==4)&&(playerMove==5)&&(winner!=1)){
+            gameState=3;
+            showAlert("Draw");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i=new Intent(getApplicationContext(),MenuActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }, 5000);
+
         }
     }
 }

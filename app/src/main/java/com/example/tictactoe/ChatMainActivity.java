@@ -31,7 +31,6 @@ public class ChatMainActivity extends AppCompatActivity {
     ArrayAdapter arrayAdpt;
     String UserName;
     ProgressBar progress;
-
     private DatabaseReference dbr = FirebaseDatabase.getInstance().getReference().getRoot();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,5 +80,6 @@ public class ChatMainActivity extends AppCompatActivity {
     private void getUserName(){
         SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
         UserName=sp.getString("key","Default user");
+
     }
 }
