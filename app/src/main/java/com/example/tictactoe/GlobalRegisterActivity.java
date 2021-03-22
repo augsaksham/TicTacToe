@@ -81,9 +81,9 @@ public class GlobalRegisterActivity extends AppCompatActivity {
 
     }
     void RegisterNewUser(){
-        etEmail=(EditText) findViewById(R.id.etEmail2);
-        etPassword=(EditText) findViewById(R.id.etPassword2);
-        etUsername=(EditText) findViewById(R.id.etUsername2);
+        etEmail=(EditText) findViewById(R.id.editTextEmail);
+        etPassword=(EditText) findViewById(R.id.editTextPassword);
+        etUsername=(EditText) findViewById(R.id.editTextUsername);
                 tmp1=etEmail.getText().toString().trim();
         tmp1.trim();
         if(tmp1.compareToIgnoreCase("")==0){

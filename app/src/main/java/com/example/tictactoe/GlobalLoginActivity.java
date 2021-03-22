@@ -1,29 +1,21 @@
 package com.example.tictactoe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-import kotlinx.coroutines.Delay;
 
 public class GlobalLoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
@@ -50,9 +42,9 @@ public class GlobalLoginActivity extends AppCompatActivity {
 
     public void Login(View view) {
         progressbar.setVisibility(View.VISIBLE);
-        etEmail=(EditText) findViewById(R.id.etEmail1);
-        etPassword=(EditText) findViewById(R.id.etPassword1);
-        etUsername=(EditText) findViewById(R.id.etUsername1);
+        etEmail=(EditText) findViewById(R.id.editTextEmail1);
+        etPassword=(EditText) findViewById(R.id.editTextPassword1);
+        etUsername=(EditText) findViewById(R.id.editTextUsername1);
         user=etEmail.getText().toString().trim();
         pass=etPassword.getText().toString().trim();
         name=etUsername.getText().toString();
