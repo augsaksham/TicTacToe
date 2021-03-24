@@ -72,18 +72,7 @@
                     android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputUsername"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
 
-                <EditText
-                    android:id="@+id/editTextUsername1"
-                    style="@style/modifiedEditText"
-                    android:hint="Username"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <ProgressBar
                 android:id="@+id/progressbar1"

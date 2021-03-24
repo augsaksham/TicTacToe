@@ -26,11 +26,13 @@ public class MenuActivity extends AppCompatActivity {
     public void StartGameOnline(View view) {
         Intent i=new Intent(getApplicationContext(),OnlineLoginActivity.class);
         startActivity(i);
+
     }
 
     public void Exit(View view) {
         int pid=android.os.Process.myPid();
         android.os.Process.killProcess(pid);
+
     }
 
     public void OpenChat(View view) {

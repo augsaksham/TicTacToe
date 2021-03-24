@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class GlobalRegisterActivity extends AppCompatActivity {
-//    private FirebaseAnalytics mFirebaseAnalytics;
+    //    private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     EditText etEmail;
@@ -69,6 +69,7 @@ public class GlobalRegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d("Auth","createUserWithEmail:onComplete:"+task);
                         if(task.isSuccessful()){
+                            progressbar.setVisibility(View.INVISIBLE);
                             Intent i=new Intent(getApplicationContext(),MenuActivity.class);
                             startActivity(i);
                         }
@@ -81,10 +82,10 @@ public class GlobalRegisterActivity extends AppCompatActivity {
 
     }
     void RegisterNewUser(){
+        progressbar.setVisibility(View.VISIBLE);
         etEmail=(EditText) findViewById(R.id.editTextEmail);
         etPassword=(EditText) findViewById(R.id.editTextPassword);
-        etUsername=(EditText) findViewById(R.id.editTextUsername);
-                tmp1=etEmail.getText().toString().trim();
+        tmp1=etEmail.getText().toString().trim();
         tmp1.trim();
         if(tmp1.compareToIgnoreCase("")==0){
             Toast.makeText(this, "Email can't be empty", Toast.LENGTH_SHORT).show();
@@ -98,14 +99,7 @@ public class GlobalRegisterActivity extends AppCompatActivity {
             progressbar.setVisibility(View.INVISIBLE);
             return;
         }
-        tmp3=etUsername.getText().toString().trim();;
-        tmp3.trim();
-        if(tmp3.compareToIgnoreCase("")==0){
-            Toast.makeText(this, "Username can't be empty", Toast.LENGTH_SHORT).show();
-            progressbar.setVisibility(View.INVISIBLE);
-            return;
-        }
-        userName=etUsername.getText().toString();
+        userName=convertEmailString(etEmail.getText().toString());
         RegisterUser(etEmail.getText().toString(),etPassword.getText().toString());
         SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
@@ -121,12 +115,16 @@ public class GlobalRegisterActivity extends AppCompatActivity {
     }
 
     public void Register(View view) {
-        progressbar.setVisibility(View.VISIBLE);
         RegisterNewUser();
     }
 
     public void Login(View view) {
         Intent i=new Intent(getApplicationContext(),GlobalLoginActivity.class);
         startActivity(i);
+    }
+    private String convertEmailString(String Email){
+        String value = Email.substring(0, Email.indexOf('@'));
+        value = value.replace(".", "");
+        return value;
     }
 }

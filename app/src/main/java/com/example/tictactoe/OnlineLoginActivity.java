@@ -235,7 +235,7 @@ public class OnlineLoginActivity extends AppCompatActivity {
                 set.add(key);
             }
         }
-
+        set.remove(UserName);
         adpt.clear();
         adpt.addAll(set);
         adpt.notifyDataSetChanged();
@@ -257,6 +257,11 @@ public class OnlineLoginActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+        adpt.clear();
+        list_loginUsers.clear();
+        list_requestedUsers.clear();
+        reqUsersAdpt.clear();
+
     }
 
 
@@ -278,4 +283,5 @@ public class OnlineLoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }

@@ -44,10 +44,9 @@ public class GlobalLoginActivity extends AppCompatActivity {
         progressbar.setVisibility(View.VISIBLE);
         etEmail=(EditText) findViewById(R.id.editTextEmail1);
         etPassword=(EditText) findViewById(R.id.editTextPassword1);
-        etUsername=(EditText) findViewById(R.id.editTextUsername1);
         user=etEmail.getText().toString().trim();
         pass=etPassword.getText().toString().trim();
-        name=etUsername.getText().toString();
+        name=convertString(etEmail.getText().toString());
         tmp1=etEmail.getText().toString().trim();
         tmp1.trim();
         if(tmp1.compareToIgnoreCase("")==0){
@@ -59,13 +58,6 @@ public class GlobalLoginActivity extends AppCompatActivity {
         tmp2.trim();
         if(tmp2.compareToIgnoreCase("")==0){
             Toast.makeText(this, "Password can't be empty", Toast.LENGTH_SHORT).show();
-            progressbar.setVisibility(View.INVISIBLE);
-            return;
-        }
-        tmp3=etUsername.getText().toString().trim();;
-        tmp3.trim();
-        if(tmp3.compareToIgnoreCase("")==0){
-            Toast.makeText(this, "Username can't be empty", Toast.LENGTH_SHORT).show();
             progressbar.setVisibility(View.INVISIBLE);
             return;
         }
@@ -81,7 +73,7 @@ public class GlobalLoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                            progressbar.setVisibility(View.INVISIBLE);
+                    progressbar.setVisibility(View.INVISIBLE);
                     Intent i = new Intent(getApplicationContext(), MenuActivity.class);
                     startActivity(i);
                 }else{
@@ -90,5 +82,10 @@ public class GlobalLoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private String convertString(String Email){
+        String value = Email.substring(0, Email.indexOf('@'));
+        value = value.replace(".", "");
+        return value;
     }
 }
