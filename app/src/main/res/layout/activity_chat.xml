@@ -34,11 +34,15 @@
 
     <EditText
         android:id="@+id/etMessage1"
-        android:layout_width="388dp"
-        android:layout_height="41dp"
+        android:layout_width="389dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-
+        android:layout_marginBottom="10dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:background="@color/black"
+        android:textColor="@color/green"
         android:layout_weight="0.72"
         android:ems="10"
         android:hint="Title"
@@ -49,12 +53,16 @@
 
     <EditText
         android:id="@+id/etMessage"
-        android:layout_width="388dp"
-        android:layout_height="38dp"
+        android:layout_width="393dp"
+        android:layout_height="51dp"
+        android:background="@color/black"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic"
+        android:textColor="@color/green"
+        android:fontFamily="sans-serif-condensed-medium"
         android:layout_weight="0.72"
-
         android:ems="10"
         android:hint="Description"
         android:maxHeight="80dp"
@@ -62,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/lvConversation"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintVertical_bias="0.852" />
 
     <Button
         android:id="@+id/btnSendMsg"

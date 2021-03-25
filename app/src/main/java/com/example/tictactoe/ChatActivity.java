@@ -43,7 +43,7 @@ public class ChatActivity extends AppCompatActivity {
         etMsg2=(EditText)(findViewById(R.id.etMessage1));
 
         lvDiscussion = (ListView) findViewById(R.id.lvConversation);
-        arrayAdpt = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listConversation);
+        arrayAdpt = new ArrayAdapter(this,  R.layout.list_view_text_colors, R.id.list_content, listConversation);
         lvDiscussion.setAdapter(arrayAdpt);
 
 
