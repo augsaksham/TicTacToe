@@ -24,7 +24,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class ChatMainActivity extends AppCompatActivity {
+public class ChatMainActivity2 extends AppCompatActivity {
 
     ListView lvDiscussionTopics;
     ArrayList<String> listOfDiscussion = new ArrayList<String>();
@@ -35,7 +35,7 @@ public class ChatMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_main);
+        setContentView(R.layout.activity_chat_main_activity2);
         progress=(ProgressBar) findViewById(R.id.progressbar3);
         progress.setVisibility(View.VISIBLE);
         lvDiscussionTopics = (ListView) findViewById(R.id.lvDiscussionTopics);
@@ -44,7 +44,6 @@ public class ChatMainActivity extends AppCompatActivity {
         lvDiscussionTopics.setAdapter(arrayAdpt);
         SharedPreferences sp = getSharedPreferences("FILE_NAME", MODE_PRIVATE);
         UserName=sp.getString("key"," Default user");
-
         dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -54,8 +53,8 @@ public class ChatMainActivity extends AppCompatActivity {
                     set.add(((DataSnapshot)i.next()).getKey());
                 }
                 set.remove("users");
-                set.remove("AsiaRegion");
                 set.remove("playing");
+                set.remove("Blogs");
                 arrayAdpt.clear();
                 arrayAdpt.addAll(set);
                 arrayAdpt.notifyDataSetChanged();
@@ -63,7 +62,7 @@ public class ChatMainActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(ChatMainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatMainActivity2.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,7 +71,7 @@ public class ChatMainActivity extends AppCompatActivity {
         lvDiscussionTopics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+                Intent i = new Intent(getApplicationContext(), ChatActivity2.class);
                 i.putExtra("selected_topic", ((TextView)view).getText().toString());
                 i.putExtra("user_name", UserName);
                 startActivity(i);

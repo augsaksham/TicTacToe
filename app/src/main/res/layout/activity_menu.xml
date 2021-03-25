@@ -43,6 +43,21 @@
         android:paddingBottom="10dp"
         android:text="Chat"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+    <Button
+        android:id="@+id/blogs"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/aclonica"
+        android:onClick="OpenBlog"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Blogging"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
 
     <Button
         android:id="@+id/multi_player"
@@ -58,6 +73,8 @@
         android:paddingBottom="10dp"
         android:text="Multi Player"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+
 
     <Button
         android:id="@+id/exit"

@@ -1,53 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity"
-    android:background="@drawable/bac">
+    android:background="@drawable/menubacknewn"
+    tools:context=".ChatActivity">
+
     <ListView
         android:id="@+id/lvConversation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/form"
+        android:layout_width="411dp"
+        android:layout_height="480dp"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:paddingBottom="10dp"
-        android:text="" />
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/form"
+
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/aclonica"
+        android:text="Post a new blog : "
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvConversation" />
+
+    <EditText
+        android:id="@+id/etMessage1"
+        android:layout_width="388dp"
+        android:layout_height="41dp"
         android:layout_alignParentLeft="true"
-        android:background="#91f1f1f1"
-        android:orientation="horizontal"
-        android:paddingBottom="2dp" >
+        android:layout_alignParentBottom="true"
+
+        android:layout_weight="0.72"
+        android:ems="10"
+        android:hint="Title"
+        android:maxHeight="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/etMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etMessage"
+        android:layout_width="388dp"
+        android:layout_height="38dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="0.72"
+
+        android:ems="10"
+        android:hint="Description"
+        android:maxHeight="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lvConversation"
+        app:layout_constraintVertical_bias="0.816" />
+
+    <Button
+        android:id="@+id/btnSendMsg"
+        style="@style/postButton"
+        android:layout_width="196dp"
+        android:layout_height="49dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="24dp"
+        android:text="Post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etMessage" />
 
 
-        <EditText
-            android:id="@+id/etMessage"
-            android:layout_width="320dp"
-            android:layout_height="54dp"
-            android:layout_alignTop="@+id/button1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/sendMessageButton"
-            android:layout_weight="0.72"
-            android:background="@color/black"
-            android:ems="10"
-            android:maxHeight="80dp" />
-
-        <Button
-            android:id="@+id/btnSendMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:background="#8BC34A"
-            android:text="Send" />
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

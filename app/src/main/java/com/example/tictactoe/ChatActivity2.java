@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity2 extends AppCompatActivity {
     Button btnSendMsg;
-    EditText etMsg,etMsg2;
+    EditText etMsg;
 
     ListView lvDiscussion;
     ArrayList<String> listConversation = new ArrayList<String>();
@@ -37,10 +37,9 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_chat2);
         btnSendMsg = (Button) findViewById(R.id.btnSendMsg);
         etMsg = (EditText) findViewById(R.id.etMessage);
-        etMsg2=(EditText)(findViewById(R.id.etMessage1));
 
         lvDiscussion = (ListView) findViewById(R.id.lvConversation);
         arrayAdpt = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listConversation);
@@ -62,13 +61,11 @@ public class ChatActivity extends AppCompatActivity {
 
                 DatabaseReference dbr2 = dbr.child(user_msg_key);
                 Map<String, Object> map2 = new HashMap<String, Object>();
-                String tm=etMsg2.getText().toString()+"!"+etMsg.getText().toString();
-                map2.put("msg", tm);
+                map2.put("msg", etMsg.getText().toString());
                 map2.put("user", UserName);
                 dbr2.updateChildren(map2);
 
                 etMsg.setText("");
-                etMsg2.setText("");
             }
         });
         dbr.addChildEventListener(new ChildEventListener() {
@@ -102,21 +99,15 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
     public void updateConversation(DataSnapshot dataSnapshot){
-        String total,description,title, user, conversation,tmp5;
+        String msg, user, conversation;
         Iterator i = dataSnapshot.getChildren().iterator();
         while(i.hasNext()){
-            total = (String) ((DataSnapshot)i.next()).getValue();
+            msg = (String) ((DataSnapshot)i.next()).getValue();
             user = (String) ((DataSnapshot)i.next()).getValue();
-            int pos=total.indexOf('!');
-            title=total.substring(0,pos);
-            description=total.substring(pos+1,total.length());
-            tmp5="Title : "+title+'\n'+"Description : "+description;
-            conversation = user + ": " + tmp5;
+
+            conversation = user + ": " + msg;
             arrayAdpt.insert(conversation, arrayAdpt.getCount());
             arrayAdpt.notifyDataSetChanged();
         }
-
     }
-
-
 }
