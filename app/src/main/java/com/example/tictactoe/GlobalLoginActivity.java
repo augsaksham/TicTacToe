@@ -40,6 +40,7 @@ public class GlobalLoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+
     public void Login(View view) {
         progressbar.setVisibility(View.VISIBLE);
         etEmail=(EditText) findViewById(R.id.editTextEmail1);
@@ -83,6 +84,7 @@ public class GlobalLoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private String convertString(String Email){
         String value = Email.substring(0, Email.indexOf('@'));
         value = value.replace(".", "");

@@ -324,4 +324,9 @@ public class OnlineGameActivity extends AppCompatActivity {
         iv = (ImageView) findViewById(R.id.iv_32); iv.setClickable(b);
         iv = (ImageView) findViewById(R.id.iv_33); iv.setClickable(b);
     }
+    @Override
+    public void onStop(){
+        super.onStop();
+        ResetGame();
+    }
 }
