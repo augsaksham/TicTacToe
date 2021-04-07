@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
                         activePlayer=2;
                         Autoplay();
                     }
-                }, 500);
+                }, 50);
             }
             else if(activePlayer==2){
                 selectedImage.setImageResource(R.drawable.multi_o);
@@ -183,7 +183,6 @@ public class GameActivity extends AppCompatActivity {
         iv=(ImageView) findViewById(R.id.iv_32); iv.setImageResource(0);iv.setEnabled(true);
         iv=(ImageView) findViewById(R.id.iv_33); iv.setImageResource(0);iv.setEnabled(true);
     }
-
     private void CheckWinner() {
         int winner=0;
         // checking rows
@@ -212,7 +211,7 @@ public class GameActivity extends AppCompatActivity {
             if(winner==1){
                 showAlert("You win the game");
             }else if(winner==2){
-                showAlert("Player 2 is winner");
+                showAlert("Computer wins");
             }
             gameState=2;//symolising game over
         }
